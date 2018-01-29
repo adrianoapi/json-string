@@ -2,9 +2,15 @@
 <html>
     <head>
         <title>JSON String</title>
+        <style>
+            select{
+                padding: 5px;
+                border: 1px solid #aaaaaa;
+            }
+        </style>
     </head>
     <body>
-        <select name="funcionario" id="funcionario"></select>
+        <select name="funcionario" id="funcionario" onchange="seleciona(this)"></select>
         <p id="selected"></p>
         <script>
             // Declaração da string de funcionários
@@ -18,6 +24,10 @@
             var obj = JSON.parse(funcionarios);
             for (i = 0; i < obj['employees'].length; i++) {
                 setOption(obj.employees[i].id, obj.employees[i].name);
+            }
+
+            function seleciona(object) {
+                document.getElementById('selected').innerHTML = "Selecionado: " + object.value;
             }
 
             function setOption(id, name) {
