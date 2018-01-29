@@ -2,17 +2,31 @@
 <html>
     <head>
         <title>JSON String</title>
-        <script>
-            var funcionarios = '"employees":[' +
-                    '{"id":1,"name":"Adriano"}' +
-                    '{"id":21,"name":"Júlia"}' +
-                    '{"id":2,"name":"Maria"}' +
-                    '{"id":5,"name":"João"}' +
-                    ']';
-            console.log(funcionarios);
-        </script>
     </head>
     <body>
+        <select name="funcionario" id="funcionario"></select>
         <p id="selected"></p>
+        <script>
+            // Declaração da string de funcionários
+            var funcionarios = '{"employees":[' +
+                    '{"id":1,"name":"Adriano"},' +
+                    '{"id":21,"name":"Júlia"},' +
+                    '{"id":2,"name":"Maria"},' +
+                    '{"id":5,"name":"João"}' +
+                    ']}';
+
+            var obj = JSON.parse(funcionarios);
+            for (i = 0; i < obj['employees'].length; i++) {
+                setOption(obj.employees[i].id, obj.employees[i].name);
+            }
+
+            function setOption(id, name) {
+                var option = document.createElement("option");
+                option.value = id;
+                option.text = name;
+                var select = document.getElementById("funcionario");
+                select.appendChild(option);
+            }
+        </script>
     </body>
 </html>
